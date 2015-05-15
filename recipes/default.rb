@@ -61,6 +61,16 @@ when 'ubuntu'
     command "shib-keygen"
     creates "#{node['shibboleth-standalone']['dir']}/sp-key.pem"
   end
+when 'debian'
+  %w{ shibboleth-sp2-utils shibboleth-sp2-common shibboleth-sp2-schemas opensaml2-tools }.each do |pkg|
+    package pkg
+  end
+
+  execute "Generate Shibboleth SP Key" do
+    cwd node['shibboleth-standalone']['dir']
+    command "shib-keygen"
+    creates "#{node['shibboleth-standalone']['dir']}/sp-key.pem"
+  end
 when 'windows'
   windows_package "Shibboleth Service Provider" do
     source node['shibboleth-standalone']['windows']['url']

@@ -85,7 +85,7 @@ when 'centos','redhat'
   default['shibboleth-standalone']['dir'] = "/etc/shibboleth"
   default['shibboleth-standalone']['redhat']['use_rhn'] = false
   default['shibboleth-standalone']['user'] = "shibd"
-when 'ubuntu'
+when 'ubuntu','debian'
   default['shibboleth-standalone']['dir'] = "/etc/shibboleth"
   default['shibboleth-standalone']['user'] = "_shibd"
 else 
