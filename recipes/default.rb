@@ -52,7 +52,7 @@ when 'redhat'
 
   package "shibboleth"
 when 'ubuntu'
-  %w{ libshibsp-dev libshibsp-doc opensaml2-tools }.each do |pkg|
+  %w{ libshibsp-dev libshibsp-doc opensaml2-tools shibboleth-sp2-schemas }.each do |pkg|
     package pkg
   end
 
