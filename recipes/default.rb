@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: shibboleth-sp
+# Cookbook Name:: shibboleth-standalone
 # Recipe:: default
 #
 # Copyright 2012
@@ -38,7 +38,7 @@ when 'centos'
 
   package "shibboleth"
 when 'redhat'
-  unless node['shibboleth-sp']['redhat']['use_rhn']
+  unless node['shibboleth-standalone']['redhat']['use_rhn']
     include_recipe "yum"
     repo_location = "RHEL_#{node['platform_version'].to_i}"
 
@@ -52,23 +52,19 @@ when 'redhat'
 
   package "shibboleth"
 when 'ubuntu'
-  include_recipe "apache2"
-
-  %w{ libapache2-mod-shib2 libshibsp-dev libshibsp-doc opensaml2-tools shibboleth-sp2-schemas }.each do |pkg|
+  %w{ libshibsp-dev libshibsp-doc opensaml2-tools shibboleth-standalone2-schemas }.each do |pkg|
     package pkg
   end
 
-  apache_module "shib2"
-
   execute "Generate Shibboleth SP Key" do
-    cwd node['shibboleth-sp']['dir']
+    cwd node['shibboleth-standalone']['dir']
     command "shib-keygen"
-    creates "#{node['shibboleth-sp']['dir']}/sp-key.pem"
+    creates "#{node['shibboleth-standalone']['dir']}/sp-key.pem"
   end
 when 'windows'
   windows_package "Shibboleth Service Provider" do
-    source node['shibboleth-sp']['windows']['url']
-    checksum node['shibboleth-sp']['windows']['checksum']
+    source node['shibboleth-standalone']['windows']['url']
+    checksum node['shibboleth-standalone']['windows']['checksum']
     action :install
     not_if { File.exists? "C:/opt/shibboleth/sbin/shibd.exe" }
   end

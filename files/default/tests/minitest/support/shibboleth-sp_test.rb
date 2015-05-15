@@ -1,6 +1,6 @@
 require "minitest/autorun"
 
-describe_recipe "shibboleth-sp::default" do
+describe_recipe "shibboleth-standalone::default" do
   include MiniTest::Chef::Assertions
   include MiniTest::Chef::Context
   include MiniTest::Chef::Resources

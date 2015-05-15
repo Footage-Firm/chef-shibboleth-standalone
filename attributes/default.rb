@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: shibboleth-sp
-# Attributes:: shibboleth-sp
+# Cookbook Name:: shibboleth-standalone
+# Attributes:: shibboleth-standalone
 #
 # Copyright 2012
 #
@@ -17,59 +17,59 @@
 # limitations under the License.
 #
 
-default['shibboleth-sp']['version'] = "2.5.0"
+default['shibboleth-standalone']['version'] = "2.5.0"
 
-default['shibboleth-sp']['Errors']['supportContact'] = "root@#{node['fqdn']}"
-default['shibboleth-sp']['Errors']['helpLocation'] = "/about.html"
-default['shibboleth-sp']['Errors']['styleSheet'] = "/shibboleth-sp/main.css"
-default['shibboleth-sp']['Errors']['logoLocation'] = "/shibboleth-sp/logo.jpg"
-default['shibboleth-sp']['entityID'] = "https://#{node['fqdn']}/shibboleth"
-default['shibboleth-sp']['REMOTE_USER'] = "eppn persistent-id targeted-id"
-default['shibboleth-sp']['sign-messages'] = "false"
-#default['shibboleth-sp']['attributePrefix'] = "AJP_"
-default['shibboleth-sp']['Sessions']['checkAddress'] = "false"
-default['shibboleth-sp']['Sessions']['cookieProps'] = "; path=/; HttpOnly"
-default['shibboleth-sp']['Sessions']['handlerSSL'] = "false"
-default['shibboleth-sp']['Sessions']['lifetime'] = 28800
-default['shibboleth-sp']['Sessions']['relayState'] = "ss:mem"
-default['shibboleth-sp']['Sessions']['timeout'] = 3600
-default['shibboleth-sp']['saml-query'] = true
+default['shibboleth-standalone']['Errors']['supportContact'] = "root@#{node['fqdn']}"
+default['shibboleth-standalone']['Errors']['helpLocation'] = "/about.html"
+default['shibboleth-standalone']['Errors']['styleSheet'] = "/shibboleth-standalone/main.css"
+default['shibboleth-standalone']['Errors']['logoLocation'] = "/shibboleth-standalone/logo.jpg"
+default['shibboleth-standalone']['entityID'] = "https://#{node['fqdn']}/shibboleth"
+default['shibboleth-standalone']['REMOTE_USER'] = "eppn persistent-id targeted-id"
+default['shibboleth-standalone']['sign-messages'] = "false"
+#default['shibboleth-standalone']['attributePrefix'] = "AJP_"
+default['shibboleth-standalone']['Sessions']['checkAddress'] = "false"
+default['shibboleth-standalone']['Sessions']['cookieProps'] = "; path=/; HttpOnly"
+default['shibboleth-standalone']['Sessions']['handlerSSL'] = "false"
+default['shibboleth-standalone']['Sessions']['lifetime'] = 28800
+default['shibboleth-standalone']['Sessions']['relayState'] = "ss:mem"
+default['shibboleth-standalone']['Sessions']['timeout'] = 3600
+default['shibboleth-standalone']['saml-query'] = true
 
 # Single IdP (overrode by ['SSO']['discoveryURL'])
-default['shibboleth-sp']['SSO']['entityID'] = "https://idp.example.org/idp/shibboleth"
-default['shibboleth-sp']['SSO']['discoveryProtocol'] = "SAMLDS"
+default['shibboleth-standalone']['SSO']['entityID'] = "https://idp.example.org/idp/shibboleth"
+default['shibboleth-standalone']['SSO']['discoveryProtocol'] = "SAMLDS"
 
 # Multiple IdP Discovery (overrides ['SSO']['entityID'])
-default['shibboleth-sp']['SSO']['discoveryURL'] = ""
+default['shibboleth-standalone']['SSO']['discoveryURL'] = ""
 
 # Status Handler ACL
-default['shibboleth-sp']['Handler']['Status']['acl'] = "127.0.0.1 ::1"
+default['shibboleth-standalone']['Handler']['Status']['acl'] = "127.0.0.1 ::1"
 
 # Metadata Handler Child Elements
-default['shibboleth-sp']['Handler']['MetadataGenerator']['childElements'] = nil
+default['shibboleth-standalone']['Handler']['MetadataGenerator']['childElements'] = nil
 
 # Logging
-default['shibboleth-sp']['logging']['root'] = "INFO"
-default['shibboleth-sp']['logging']['OpenSAML']['MessageDecoder'] = nil
-default['shibboleth-sp']['logging']['OpenSAML']['MessageEncoder'] = nil
-default['shibboleth-sp']['logging']['OpenSAML']['SecurityPolicyRule'] = nil
-default['shibboleth-sp']['logging']['Shibboleth']['Listener'] = nil
-default['shibboleth-sp']['logging']['Shibboleth']['RequestMapper'] = nil
-default['shibboleth-sp']['logging']['Shibboleth']['SessionCache'] = nil
-default['shibboleth-sp']['logging']['XMLTooling']['libcurl'] = nil
-default['shibboleth-sp']['logging']['XMLTooling']['Signature'] = "INFO"
-default['shibboleth-sp']['logging']['XMLTooling']['SOAPClient'] = nil
-default['shibboleth-sp']['logging']['XMLTooling']['StorageService'] = nil
+default['shibboleth-standalone']['logging']['root'] = "INFO"
+default['shibboleth-standalone']['logging']['OpenSAML']['MessageDecoder'] = nil
+default['shibboleth-standalone']['logging']['OpenSAML']['MessageEncoder'] = nil
+default['shibboleth-standalone']['logging']['OpenSAML']['SecurityPolicyRule'] = nil
+default['shibboleth-standalone']['logging']['Shibboleth']['Listener'] = nil
+default['shibboleth-standalone']['logging']['Shibboleth']['RequestMapper'] = nil
+default['shibboleth-standalone']['logging']['Shibboleth']['SessionCache'] = nil
+default['shibboleth-standalone']['logging']['XMLTooling']['libcurl'] = nil
+default['shibboleth-standalone']['logging']['XMLTooling']['Signature'] = "INFO"
+default['shibboleth-standalone']['logging']['XMLTooling']['SOAPClient'] = nil
+default['shibboleth-standalone']['logging']['XMLTooling']['StorageService'] = nil
 
 # Metadata Provider
-# default['shibboleth-sp']['MetadataProvider']['path'] = ""
-# default['shibboleth-sp']['MetadataProvider']['url'] = ""
-# default['shibboleth-sp']['MetadataProvider']['backingFilePath'] = ""
-# default['shibboleth-sp']['MetadataProvider']['reloadInterval'] = ""
+# default['shibboleth-standalone']['MetadataProvider']['path'] = ""
+# default['shibboleth-standalone']['MetadataProvider']['url'] = ""
+# default['shibboleth-standalone']['MetadataProvider']['backingFilePath'] = ""
+# default['shibboleth-standalone']['MetadataProvider']['reloadInterval'] = ""
 
 # SAML attributes for attribute-map.xml
-# default['shibboleth-sp']['attribute-map']['name-id'] = { "name" => "emailAddress", "id" => "emailAddress" }
-# default['shibboleth-sp']['attribute-map']['attributes'] = [
+# default['shibboleth-standalone']['attribute-map']['name-id'] = { "name" => "emailAddress", "id" => "emailAddress" }
+# default['shibboleth-standalone']['attribute-map']['attributes'] = [
 	# {"name" => "firstName", "id" => "firstName", "nameFormat" => "basic"},
 	# {"name" => "lastName", "id" => "lastName", "nameFormat" => "basic"}
 # ]
@@ -77,20 +77,20 @@ default['shibboleth-sp']['logging']['XMLTooling']['StorageService'] = nil
 # Platform specific customizations
 case node['platform']
 when 'windows'
-  default['shibboleth-sp']['dir'] = "C:/opt/shibboleth-sp/etc/shibboleth"
-  default['shibboleth-sp']['windows']['url']      = "http://shibboleth.net/downloads/service-provider/latest/win64/shibboleth-sp-#{node['shibboleth-sp']['version']}-win64.msi"
-  default['shibboleth-sp']['windows']['checksum'] = "d40431e3b4f2aff8ae035f2a434418106900ea6d9a7d06b2b0c2e9a30119b54c"
-  default['shibboleth-sp']['user'] = "shibd"
+  default['shibboleth-standalone']['dir'] = "C:/opt/shibboleth-standalone/etc/shibboleth"
+  default['shibboleth-standalone']['windows']['url']      = "http://shibboleth.net/downloads/service-provider/latest/win64/shibboleth-standalone-#{node['shibboleth-standalone']['version']}-win64.msi"
+  default['shibboleth-standalone']['windows']['checksum'] = "d40431e3b4f2aff8ae035f2a434418106900ea6d9a7d06b2b0c2e9a30119b54c"
+  default['shibboleth-standalone']['user'] = "shibd"
 when 'centos','redhat'
-  default['shibboleth-sp']['dir'] = "/etc/shibboleth"
-  default['shibboleth-sp']['redhat']['use_rhn'] = false
-  default['shibboleth-sp']['user'] = "shibd"
+  default['shibboleth-standalone']['dir'] = "/etc/shibboleth"
+  default['shibboleth-standalone']['redhat']['use_rhn'] = false
+  default['shibboleth-standalone']['user'] = "shibd"
 when 'ubuntu'
-  default['shibboleth-sp']['dir'] = "/etc/shibboleth"
-  default['shibboleth-sp']['user'] = "_shibd"
+  default['shibboleth-standalone']['dir'] = "/etc/shibboleth"
+  default['shibboleth-standalone']['user'] = "_shibd"
 else 
-  default['shibboleth-sp']['dir'] = "/etc/shibboleth"
-  default['shibboleth-sp']['user'] = "shibd"
+  default['shibboleth-standalone']['dir'] = "/etc/shibboleth"
+  default['shibboleth-standalone']['user'] = "shibd"
 end
 
 

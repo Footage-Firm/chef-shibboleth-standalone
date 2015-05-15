@@ -1,6 +1,6 @@
 #
 #
-# Cookbook Name:: shibboleth-sp
+# Cookbook Name:: shibboleth-standalone
 # Recipe:: sp_cert_key
 #
 # Copyright 2013 Nathan Mische
@@ -25,44 +25,44 @@ begin
   if Chef::Config[:solo]
     begin 
       shibboleth_sp_data_bag = Chef::DataBagItem.load("shibboleth","sp")
-      cert_key = shibboleth_sp_data_bag[node['shibboleth-sp']['entityID']]
+      cert_key = shibboleth_sp_data_bag[node['shibboleth-standalone']['entityID']]
       cert_key ||= shibboleth_sp_data_bag['local']
       sp_cert = cert_key['cert']
       sp_key = cert_key['key']
     rescue
-      Chef::Log.info("No shibboleth-sp data bag found")
+      Chef::Log.info("No shibboleth-standalone data bag found")
     end
   else
     begin 
       shibboleth_sp_data_bag = Chef::EncryptedDataBagItem.load("shibboleth","sp")
-      cert_key = shibboleth_sp_data_bag[node['shibboleth-sp']['entityID']]
+      cert_key = shibboleth_sp_data_bag[node['shibboleth-standalone']['entityID']]
       cert_key ||= shibboleth_sp_data_bag[node.chef_environment]
       sp_cert = cert_key['cert']
       sp_key = cert_key['key']
     rescue
-      Chef::Log.info("No shibboleth-sp encrypted data bag found")
+      Chef::Log.info("No shibboleth-standalone encrypted data bag found")
     end
   end
 ensure    
-  sp_cert ||= node['shibboleth-sp']['cert']
-  sp_key ||= node['shibboleth-sp']['key']
+  sp_cert ||= node['shibboleth-standalone']['cert']
+  sp_key ||= node['shibboleth-standalone']['key']
 end
 
 # Generate sp-cert and sp-key
 
-file "#{node['shibboleth-sp']['dir']}/sp-cert.pem" do
+file "#{node['shibboleth-standalone']['dir']}/sp-cert.pem" do
     action :create
-    owner node['shibboleth-sp']['user']
-    group node['shibboleth-sp']['user']
+    owner node['shibboleth-standalone']['user']
+    group node['shibboleth-standalone']['user']
     mode 00644
     content sp_cert
     notifies :restart, "service[shibd]", :delayed
 end
 
-file "#{node['shibboleth-sp']['dir']}/sp-key.pem" do
+file "#{node['shibboleth-standalone']['dir']}/sp-key.pem" do
     action :create
-    owner node['shibboleth-sp']['user']
-    group node['shibboleth-sp']['user']
+    owner node['shibboleth-standalone']['user']
+    group node['shibboleth-standalone']['user']
     mode 00600
     content sp_key
     notifies :restart, "service[shibd]", :delayed

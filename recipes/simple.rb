@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: shibboleth-sp
+# Cookbook Name:: shibboleth-standalone
 # Recipe:: simple
 #
 # Copyright 2012
@@ -17,9 +17,9 @@
 # limitations under the License.
 #
 
-include_recipe "shibboleth-sp"
+include_recipe "shibboleth-standalone"
 
-template "#{node['shibboleth-sp']['dir']}/attribute-map.xml" do
+template "#{node['shibboleth-standalone']['dir']}/attribute-map.xml" do
 	source "attribute-map.xml.erb"
 	owner "root" unless platform? 'windows'
 	group "root" unless platform? 'windows'
@@ -27,7 +27,7 @@ template "#{node['shibboleth-sp']['dir']}/attribute-map.xml" do
 	notifies :restart, "service[shibd]", :delayed
 end
 
-template "#{node['shibboleth-sp']['dir']}/shibboleth2.xml" do
+template "#{node['shibboleth-standalone']['dir']}/shibboleth2.xml" do
 	source "shibboleth2.xml.erb"
 	owner "root" unless platform? 'windows'
 	group "root" unless platform? 'windows'
@@ -35,7 +35,7 @@ template "#{node['shibboleth-sp']['dir']}/shibboleth2.xml" do
 	notifies :restart, "service[shibd]", :delayed
 end
 
-template "#{node['shibboleth-sp']['dir']}/shibd.logger" do
+template "#{node['shibboleth-standalone']['dir']}/shibd.logger" do
 	source "shibd.logger.erb"
 	owner "root" unless platform? 'windows'
 	group "root" unless platform? 'windows'

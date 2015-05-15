@@ -1,18 +1,22 @@
+## 0.4.0
+
+* Converted cookbook to be webserver independent
+
 ## 0.3.0
 
 * Updated default recipe to support yum cookbook version 3.x.
 
 ## 0.2.2
 
-* Added `node['shibboleth-sp']['attributePrefix']` attribute. 
+* Added `node['shibboleth-standalone']['attributePrefix']` attribute. 
 
 ## 0.2.1
 
-* Added `node['shibboleth-sp']['Handler']['MetadataGenerator']['childElements']` attribute. 
+* Added `node['shibboleth-standalone']['Handler']['MetadataGenerator']['childElements']` attribute. 
 
 ## 0.2.0
 
-* Added `node['shibboleth-sp']['logging']` attributes and shibd.logger template
+* Added `node['shibboleth-standalone']['logging']` attributes and shibd.logger template
 
 ## v0.1.6
 

@@ -141,10 +141,10 @@
     <Attribute name="urn:oid:2.5.4.19" id="physicalDeliveryOfficeName"/>
     -->
 
-    <% if node['shibboleth-sp']['attribute-map'] -%>
-    <% if node['shibboleth-sp']['attribute-map']['name-id'] -%>
+    <% if node['shibboleth-standalone']['attribute-map'] -%>
+    <% if node['shibboleth-standalone']['attribute-map']['name-id'] -%>
     <Attribute
-      <% case node['shibboleth-sp']['attribute-map']['name-id']['name'] -%>
+      <% case node['shibboleth-standalone']['attribute-map']['name-id']['name'] -%>
       <% when 'emailAddress' -%>
       name="urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
       <% when 'entity' -%>
@@ -162,14 +162,14 @@
       <% when 'X509SubjectName' -%>
       name="urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName"
       <% end -%>
-      id="<%= node['shibboleth-sp']['attribute-map']['name-id']['id'] %>"
+      id="<%= node['shibboleth-standalone']['attribute-map']['name-id']['id'] %>"
     >
       <AttributeDecoder xsi:type="NameIDAttributeDecoder" />
     </Attribute>
     <% end -%>
 
-    <% if node['shibboleth-sp']['attribute-map']['attributes'] -%>
-    <% node['shibboleth-sp']['attribute-map']['attributes'].each do |attribute| -%>
+    <% if node['shibboleth-standalone']['attribute-map']['attributes'] -%>
+    <% node['shibboleth-standalone']['attribute-map']['attributes'].each do |attribute| -%>
     <Attribute name="<%= attribute['name'] %>" id="<%= attribute['id'] %>"
       <% case attribute['nameFormat'] -%>
       <% when 'basic' -%>
