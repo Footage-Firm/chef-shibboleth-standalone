@@ -54,7 +54,7 @@ file "#{node['shibboleth-standalone']['dir']}/sp-cert.pem" do
     action :create
     owner node['shibboleth-standalone']['user']
     group node['shibboleth-standalone']['user']
-    mode 00644
+    mode 0644
     content sp_cert
     notifies :restart, "service[shibd]", :delayed
 end
